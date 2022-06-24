@@ -17,13 +17,13 @@ cursor = conn.cursor()
 try:
     cursor.execute('''
         CREATE TABLE gapTable (
-            Number nvarchar(50) primary key,
-            Event_Timestamp nvarchar(50),
-            Duration nvarchar(50),
-            Class nvarchar(50),
-            Location nvarchar(50),
-            Description nvarchar(50),
-            Tag nvarchar(50)
+            CartonIDS nvarchar(50),
+            CartonNum nvarchar(50),
+            Gap nvarchar(50),
+            Length nvarchar(50),
+            Barcode nvarchar(50),
+            Timestamp nvarchar(50),
+            Recirc nvarchar(50)
             )
                ''')
 except:
@@ -31,15 +31,15 @@ except:
 finally:
     for row in df.itertuples():
         cursor.execute('''
-                INSERT INTO alarmTable (Number, Event_Timestamp, Duration, Class, Location, Description, Tag)
+                INSERT INTO gapTable (CartonIDS, CartonNum, Gap, Length, Barcode, Timestamp, Recirc)
                 VALUES (?,?,?,?,?,?,?)
                 ''',
-                row.Number, 
-                row.Event_Timestamp,
-                row.Duration,
-                row.Class,
-                row.Location,
-                row.Description,
-                row.Tag
+                row.CartonIDS, 
+                row.CartonNum,
+                row.Gap,
+                row.Length,
+                row.Barcode,
+                row.Timestamp,
+                row.Recirc
                 )
 conn.commit()
