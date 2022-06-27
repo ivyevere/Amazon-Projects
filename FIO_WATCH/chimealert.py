@@ -26,8 +26,7 @@ elif ioFault.empty == False:
     nIO = ioFault['Location'].str.contains(topIO[0]).count()
     topIO = topIO[0]
 
-#--------------Send to Chime--------------#
+#--------------Output to Chime--------------#
 
 msg = topIO + ' has faulted ' + str(nIO) + ' times!'
-
 chimeAlert(msg)
